@@ -22,12 +22,14 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ]
 
+// selezioni elementi utili
 const itemsCont = document.querySelector(".items");
 const thumbsCont = document.querySelector(".thumbs");
-
+const next = document.querySelector(".next")
 let  item = "";
 let thumbs = "";
 
+// output elementi
 for(let i = 0; i < items.length; i++ ) {
     item += `
     <div class="item">
@@ -38,7 +40,7 @@ for(let i = 0; i < items.length; i++ ) {
             ${text[i]}
             </p>
           </div>
-        </div>;`;
+        </div>`;
 
 
         thumbs += `
@@ -47,8 +49,41 @@ for(let i = 0; i < items.length; i++ ) {
       </div>`
 }
 
+// output globale con active in posizione di default
 itemsCont.innerHTML = item;
 document.getElementsByClassName("item") [0].classList.add("active");
 
 thumbsCont.innerHTML += thumbs;
-thumbsCont.getElementsByClassName("thumbs") [0].classList.add("active");
+document.getElementsByClassName("thumb") [0].classList.add("active");
+
+let activePosition = 0;
+
+// click sul next
+document.querySelector(".next").addEventListener("click",
+    function(){
+
+        activePosition = activePosition + 1;
+
+        document.querySelector(".item.active").classList.remove("active");
+        document.getElementsByClassName("item") [activePosition].classList.add("active");
+
+        document.querySelector(".thumb.active").classList.remove("active");
+        document.getElementsByClassName("thumb") [activePosition].classList.add("active");
+
+}
+);
+
+// click sul prev
+document.querySelector(".prev").addEventListener("click",
+    function(){
+
+        activePosition = activePosition - 1;
+
+        document.querySelector(".item.active").classList.remove("active");
+        document.getElementsByClassName("item") [activePosition].classList.add("active");
+
+        document.querySelector(".thumb.active").classList.remove("active");
+        document.getElementsByClassName("thumb") [activePosition].classList.add("active");
+
+}
+);
