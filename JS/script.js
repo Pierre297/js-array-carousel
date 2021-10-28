@@ -59,10 +59,18 @@ document.getElementsByClassName("thumb") [0].classList.add("active");
 let activePosition = 0;
 
 // click sul next
-document.querySelector(".next").addEventListener("click",
+const nextMio = document.querySelector(".next")
+nextMio.addEventListener("click",
     function(){
 
-        activePosition = activePosition + 1;
+        // non sono alla fine degli elementi
+        if(activePosition < items.length - 1){
+            activePosition = activePosition + 1;
+        }else {// sono alla fine degli elementi?
+                    // resetto la variabile di indice 
+                    activePosition = 0;
+        }
+        
 
         document.querySelector(".item.active").classList.remove("active");
         document.getElementsByClassName("item") [activePosition].classList.add("active");
@@ -74,10 +82,20 @@ document.querySelector(".next").addEventListener("click",
 );
 
 // click sul prev
-document.querySelector(".prev").addEventListener("click",
+const prevMio = document.querySelector(".prev")
+prevMio.addEventListener("click",
     function(){
 
-        activePosition = activePosition - 1;
+        // se indice/ posizione è 0
+        if(activePosition === 0){
+            // fallo tornare a ultimo elemento
+            activePosition = item.length -1;
+        }else {
+            activePosition = activePosition - 1;
+        }
+            
+        
+        
 
         document.querySelector(".item.active").classList.remove("active");
         document.getElementsByClassName("item") [activePosition].classList.add("active");
